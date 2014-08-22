@@ -1,0 +1,36 @@
+.board-element{
+	margin: 	8px;
+	padding:	8px;
+	border: 3px solid white;
+	box-shadow: 0px 0px 5px -1px grey;
+	background-color: #9dc;
+	
+	height: 65px;
+	width: 65px;
+	
+	color: white;
+	font-size: 36px;
+	text-align: center;
+}
+
+.board-element .inner{
+	color: white;
+	font-size: 24px;
+	margin: auto;
+}
+
+#task-area{
+	width: 200px;
+	margin-left: 20px;
+}
+
+#wanted-number {
+	width: 100px;
+	height: 100px;
+	
+	margin-top: 100px;
+	
+	text-align: center;
+	font-size: 64px;
+	color: #9dc;
+}
