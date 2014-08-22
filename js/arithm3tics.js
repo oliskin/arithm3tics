@@ -1,7 +1,9 @@
 $(document).ready(function(){
 	createBoard();
 	
-	createWantedNumber();
+	var wantedNumbers = createWantedNumbers();
+	
+	$('#new-round-button').click(newRound);
 	
 });
 
@@ -47,6 +49,28 @@ function shuffleArray(array){
 
 }
 
-function createWantedNumber(){
-	$("#wanted-number").text(Math.floor(Math.random()*50 + 1));
+function createWantedNumbers(){
+	wantedNumbers = new Array();
+	for(var i = 0; i<50; i++){
+		wantedNumbers.push(i+1);
+	}
+	return wantedNumbers;
+}
+
+function newRound(){
+	$('#next-number-button').off();
+	$('#next-number-button').click(showNewWantedNumber);
+	wantedNumbers = createWantedNumbers();
+	showNewWantedNumber();
+}
+
+function showNewWantedNumber(){
+	if(wantedNumbers.length > 0){
+		var selectedNumber = Math.floor(Math.random()*wantedNumbers.length);
+
+		$("#wanted-number").text(wantedNumbers[selectedNumber]);
+		wantedNumbers.splice(selectedNumber,1);
+	} else {
+		$("#wanted-number").text("fin");
+	}
 }
