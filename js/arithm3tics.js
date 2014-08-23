@@ -18,6 +18,13 @@ function createBoard(){
 		var the_tr = $('<tr>');
 		for(j=0;j<8;j++){
 			var element = new BoardElement(i,j);
+
+			(function(_element){
+				_element.click(function(){
+					_element.toggleElement();
+				});
+			})(element);
+
 			if(boardNumbers.length > 0){
 				element.setValue(boardNumbers[i*8+j]);
 			} else {

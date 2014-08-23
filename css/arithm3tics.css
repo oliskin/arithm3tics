@@ -17,6 +17,10 @@
 	text-align: center;
 }
 
+.board-element.selected{
+	background-color: #9d9;
+}
+
 .board-element .inner{
 	color: white;
 	font-size: 24px;
