@@ -34,7 +34,18 @@
 	border: 3px solid #f97;
 	color: #f97;
 	text-align: center;
-	opacity: 1;
+}
+
+#time-panel.fade {
+	-webkit-transition: opacity 3s linear;
+	-o-transition: opacity 3s linear;
+	transition: opacity 3s linear;
+}
+
+#time-panel.fade.in {
+	-webkit-transition: opacity 0.5s linear;
+	-o-transition: opacity 0.5s linear;
+	transition: opacity 0.5s linear;
 }
 
 .time-field{

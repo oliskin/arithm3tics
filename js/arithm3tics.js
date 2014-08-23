@@ -66,14 +66,28 @@ function newRound(){
 	//start the timer
 	$("#t").timer('reset');
 	$("#t").timer('start');
+	
+	// fade the time panel out after 5 seconds	
+	window.setTimeout(function(){
+		$('#time-panel').addClass('fade');
+	}, 3500);
 }
 
 function showNewWantedNumber(){
+	$('#time-panel').addClass('fade in');
+	
 	if(wantedNumbers.length > 0){
 		var selectedNumber = Math.floor(Math.random()*wantedNumbers.length);
-
+		
 		$("#wanted-number").text(wantedNumbers[selectedNumber]);
 		wantedNumbers.splice(selectedNumber,1);
+		
+		window.setTimeout(function(){
+			$('#time-panel').removeClass('in');
+		}, 3500);
+		
+		
+		
 	} else {
 		$("#wanted-number").text("fin");
 		$("#t").timer('pause');
