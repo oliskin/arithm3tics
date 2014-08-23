@@ -1,9 +1,16 @@
 <html>
 <head>
+
+<!-- JQuery -->
 <script language="javascript" type="text/javascript" src="js/jquery-2.1.1.min.js"> </script>
+
+<!-- Bootstrap -->
 <script language="javascript" type="text/javascript" src="js/bootstrap.min.js"> </script>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" >
 <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" >
+
+<!-- Timer Plugin for JQuery -->
+<script language="javascript" type="text/javascript" src="js/timer-older-version.jquery.min.js"> </script>
 
 <script language="javascript" type="text/javascript" src="js/arithm3tics.js"></script>
 <link rel="stylesheet" type="text/css" href="css/arithm3tics.css" >
@@ -24,6 +31,10 @@
 			
 			Watch out! The order of the operations is defining. Multiplication and Division are not prior to Addition and Subtraction.
 			<button type="button" class="btn-lg btn-primary" id="new-round-button">Start New Round</button>
+			<div id="time-panel">
+			Your Time:
+			<div id="t" class="time-field">00:00</div>
+			</div>
 			
 			<div id="wanted-number" >
 			</div>

@@ -28,11 +28,24 @@
 	margin-top: 40px;
 }
 
+#time-panel {
+	margin-top: 5px;
+
+	border: 3px solid #f97;
+	color: #f97;
+	text-align: center;
+	opacity: 1;
+}
+
+.time-field{
+	font-size: 36px;
+}
+
 #wanted-number {
 	width: 100px;
 	height: 100px;
 	
-	margin-top: 100px;
+	margin-top: 75px;
 	
 	text-align: center;
 	font-size: 64px;
@@ -40,6 +53,8 @@
 	
 	color: #f97;
 }
+
+/* --------- Overriding some Bootstrap styles --------------- */
 
 .btn-primary{
 	/*background: #6a9;*/

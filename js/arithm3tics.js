@@ -62,6 +62,10 @@ function newRound(){
 	$('#next-number-button').click(showNewWantedNumber);
 	wantedNumbers = createWantedNumbers();
 	showNewWantedNumber();
+	
+	//start the timer
+	$("#t").timer('reset');
+	$("#t").timer('start');
 }
 
 function showNewWantedNumber(){
@@ -72,5 +76,6 @@ function showNewWantedNumber(){
 		wantedNumbers.splice(selectedNumber,1);
 	} else {
 		$("#wanted-number").text("fin");
+		$("#t").timer('pause');
 	}
 }
