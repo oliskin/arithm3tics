@@ -1,3 +1,7 @@
+#board {
+	margin-top: 20px;
+}
+
 .board-element{
 	margin: 	8px;
 	padding:	8px;
@@ -21,7 +25,7 @@
 
 #task-area{
 	width: 200px;
-	margin-left: 20px;
+	margin-left: 40px;
 }
 
 #new-round-button{

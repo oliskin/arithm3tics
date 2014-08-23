@@ -1,11 +1,15 @@
 $(document).ready(function(){
+
 	createBoard();
 	
 	var wantedNumbers = createWantedNumbers();
 	
 	$('#new-round-button').click(newRound);
-	
 });
+
+BoardElement = function(){
+	$.extend(this, $);
+}
 
 function createBoard(){
 	boardNumbers = createRandomBoardNumbers();
@@ -13,13 +17,13 @@ function createBoard(){
 	for(i=0;i<8; i++){
 		var the_tr = $('<tr>');
 		for(j=0;j<8;j++){
-			var element = $('<div>').addClass('board-element-inner');
+			var element = new BoardElement(i,j);
 			if(boardNumbers.length > 0){
-				element.text(boardNumbers[i*8+j]);
+				element.setValue(boardNumbers[i*8+j]);
 			} else {
-				element.text(Math.floor(Math.random()*10));
+				element.setValue(Math.floor(Math.random()*10));
 			}
-			var the_td = $('<td>').append($('<div>').addClass('board-element').append(element));
+			var the_td = $('<td>').append(element);
 			the_tr.append(the_td);
 		}
 		$("#board-table").append(the_tr);
@@ -57,7 +61,8 @@ function createWantedNumbers(){
 	return wantedNumbers;
 }
 
-function newRound(){
+function newRound(arg1){
+
 	$('#next-number-button').off();
 	$('#next-number-button').click(showNewWantedNumber);
 	wantedNumbers = createWantedNumbers();
