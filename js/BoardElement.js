@@ -1,20 +1,32 @@
 BoardElement = function(row, col){
-	innerElement = $('<div>').addClass('board-element-inner');
-	basicElement = $('<div>').addClass('board-element').append(innerElement);
+	var innerElement = $('<div>').addClass('board-element-inner');
+	var basicElement = $('<div>').addClass('board-element').append(innerElement);
+	
+	$.extend(this, basicElement);
+	
+	
+	
+	
+	this.row = row;
+	this.col = col;
 
+	function setValue(value){
+		innerElement.text(value);
+	}
+	this.setValue = setValue;
+	
+	function markElementSelected(){
+		this.addClass('selected');
+	}
+	this.markElementSelected = markElementSelected;
+	
+	function markElementUnselected(){
+		this.removeClass('selected');
+	}
+	this.markElementUnselected = markElementUnselected;
 
-	$.extend(this, basicElement,
-	{
-		row				: row,
-		col				: col,
-		
-		setValue 		: function(value){
-			innerElement.text(value);
-		},
-		
-		toggleElement	: function(){
-			this.toggleClass('selected');
-		}
-	});
+	
+	
+	
 	
 }
