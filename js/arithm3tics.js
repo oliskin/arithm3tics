@@ -17,24 +17,34 @@ function createBoard(){
 	for(i=0;i<8; i++){
 		var the_tr = $('<tr>');
 		for(j=0;j<8;j++){
-			var element = new BoardElement(i,j);
-
-			(function(_element){
-				_element.click(function(){
-					_element.toggleElement();
-				});
-			})(element);
-
+			var value;
+			
 			if(boardNumbers.length > 0){
-				element.setValue(boardNumbers[i*8+j]);
+				value = boardNumbers[i*8+j];
 			} else {
-				element.setValue(Math.floor(Math.random()*10));
+				value = Math.floor(Math.random()*10);
 			}
+			
+			var element = createElement(i,j,value);
+			
 			var the_td = $('<td>').append(element);
 			the_tr.append(the_td);
 		}
 		$("#board-table").append(the_tr);
 	}
+}
+
+function createElement(row, col, value){
+	var element = new BoardElement(i,j);
+	element.setValue(value);
+	
+	(function(_element){
+		_element.click(function(){
+			_element.toggleElement();
+		});
+	})(element);
+	
+	return element;
 }
 
 function createRandomBoardNumbers(){
