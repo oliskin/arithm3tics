@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+	selectedElements = new Array();
+
 	createBoard();
 	
 	var wantedNumbers = createWantedNumbers();
@@ -7,9 +9,6 @@ $(document).ready(function(){
 	$('#new-round-button').click(newRound);
 });
 
-BoardElement = function(){
-	$.extend(this, $);
-}
 
 function createBoard(){
 	boardNumbers = createRandomBoardNumbers();
@@ -38,11 +37,8 @@ function createElement(row, col, value){
 	var element = new BoardElement(i,j);
 	element.setValue(value);
 	
-	(function(_element){
-		_element.click(function(){
-			_element.toggleElement();
-		});
-	})(element);
+	
+ 	element.click({clickedElement: element }, elementClicked);
 	
 	return element;
 }
@@ -98,6 +94,8 @@ function newRound(arg1){
 function showNewWantedNumber(){
 	$('#time-panel').addClass('fade in');
 	
+	unselectAllElements();
+	
 	if(wantedNumbers.length > 0){
 		var selectedNumber = Math.floor(Math.random()*wantedNumbers.length);
 		
@@ -114,4 +112,53 @@ function showNewWantedNumber(){
 		$("#wanted-number").text("fin");
 		$("#t").timer('pause');
 	}
+}
+
+function unselectAllElements(){
+	while(selectedElements.length > 0){
+		selectedElements[0].markElementUnselected();
+		selectedElements.splice(0,1);
+	}
+}
+
+
+function elementClicked(event){
+	var element = event.data.clickedElement;
+	
+	//adding or removing element to the selectedElements list
+	//if the element is inside the list, remove it
+	var elementIndex = find(element, selectedElements);
+	
+	if(elementIndex < 0){
+		selectedElements.push(element);
+		element.markElementSelected();
+	} else {
+		selectedElements.splice(elementIndex, 1);
+		element.markElementUnselected();
+	}
+	
+	// //if now the list contains three elements, start evaluations
+// 	if(selectedElements.length == 3){
+// 		checkAdjacencyOfElements(selectedElements);
+// 		checkMathematicalCorrectness();
+// 	}
+
+}
+
+// function checkAdjacencyOfElements(elements){
+// 	//sort elements
+// 	
+// }
+// 
+// function checkMathematicalCorrectness(){
+// 
+// }
+
+function find(element, array){
+	for(var i = 0; i<array.length; i++){
+		if(array[i] == element){
+			return i;
+		}
+	}
+	return -1;
 }
