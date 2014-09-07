@@ -27,6 +27,17 @@ BoardElement = function(row, col){
 	}
 	this.markElementUnselected = markElementUnselected;
 
+
+	function markElementCorrect(){
+		this.addClass('transitioning correct');
+		window.setTimeout(function(){
+			basicElement.removeClass("correct");
+			}, 300);
+		window.setTimeout(function(){
+			basicElement.removeClass("transitioning");
+		}, 1000);
+	}
+	this.markElementCorrect = markElementCorrect;
 	
 	
 	

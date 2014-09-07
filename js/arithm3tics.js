@@ -154,6 +154,14 @@ function evaluateResult(selectedElements, wantedNumber){
  		isCorrect = checkMathematicalCorrectness(selectedElements, wantedNumber);
  		if(isCorrect){
  			console.log("correct");
+ 			$.each(selectedElements, function(index, value) {
+  				value.markElementCorrect();
+			});
+ 			showNewWantedNumber();
+ 			
+ 		} else {
+ 			console.log("incorrect");
+ 			unselectAllElements();
  		}
 }
 
