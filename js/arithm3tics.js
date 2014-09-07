@@ -7,7 +7,7 @@ $(document).ready(function(){
 	createBoard();
 	
 	var wantedNumbers = createWantedNumbers();
-	var wantedNumber;
+	wantedNumber = -1;
 	
 	$('#new-round-button').click(newRound);
 });
@@ -127,25 +127,28 @@ function unselectAllElements(){
 
 
 function elementClicked(event){
-	var element = event.data.clickedElement;
+ 	if(wantedNumber > -1){
+		var element = event.data.clickedElement;
 	
-	//adding or removing element to the selectedElements list
-	//if the element is inside the list, remove it
-	var elementIndex = find(element, selectedElements);
+		//adding or removing element to the selectedElements list
+		//if the element is inside the list, remove it
+		var elementIndex = find(element, selectedElements);
 	
-	if(elementIndex < 0){
-		selectedElements.push(element);
-		element.markElementSelected();
-	} else {
-		selectedElements.splice(elementIndex, 1);
-		element.markElementUnselected();
-	}
+		if(elementIndex < 0){
+			selectedElements.push(element);
+			element.markElementSelected();
+		} else {
+			selectedElements.splice(elementIndex, 1);
+			element.markElementUnselected();
+		}
 	
-	//if now the list contains three elements, start evaluations
-	if(selectedElements.length == 3){
-		evaluateResult(selectedElements, wantedNumber);
+		//if now the list contains three elements, start evaluations
+		if(selectedElements.length == 3){
+			
+			evaluateResult(selectedElements, wantedNumber);
 
-	}
+		}
+ 	}
 
 }
 
