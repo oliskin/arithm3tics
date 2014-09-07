@@ -153,17 +153,15 @@ function elementClicked(event){
 }
 
 function evaluateResult(selectedElements, wantedNumber){
-	// checkAdjacencyOfElements(selectedElements);
+		isAdjacent = checkAdjacencyOfElements(selectedElements);
  		isCorrect = checkMathematicalCorrectness(selectedElements, wantedNumber);
- 		if(isCorrect){
- 			console.log("correct");
+ 		if(isAdjacent && isCorrect){
  			$.each(selectedElements, function(index, value) {
   				value.markElementCorrect();
 			});
  			showNewWantedNumber();
  			
  		} else {
- 			console.log("incorrect");
  			$.each(selectedElements, function(index, value) {
   				value.markElementIncorrect();
 			});
@@ -171,11 +169,23 @@ function evaluateResult(selectedElements, wantedNumber){
  		}
 }
 
-// function checkAdjacencyOfElements(elements){
-// 	//sort elements
-// 	
-// }
-// 
+function checkAdjacencyOfElements(elements){
+	var firstRowGap = elements[0].row - elements[1].row;
+	var secondRowGap = elements[1].row - elements[2].row;
+	var isRowAdjacent = (firstRowGap == secondRowGap) && Math.abs(firstRowGap)<=1;
+	
+	var firstColGap = elements[0].col - elements[1].col;
+	var secondColGap = elements[1].col - elements[2].col;
+	var isColAdjacent = (firstColGap == secondColGap) && Math.abs(firstColGap) <= 1;
+	if(isRowAdjacent && isColAdjacent){
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
+
 function checkMathematicalCorrectness(selectedElements, result){
 	if(result != null && selectedElements.length > 2){
 		//try first mathematical operation
