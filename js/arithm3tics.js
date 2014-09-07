@@ -161,6 +161,9 @@ function evaluateResult(selectedElements, wantedNumber){
  			
  		} else {
  			console.log("incorrect");
+ 			$.each(selectedElements, function(index, value) {
+  				value.markElementIncorrect();
+			});
  			unselectAllElements();
  		}
 }

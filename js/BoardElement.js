@@ -39,6 +39,17 @@ BoardElement = function(row, col){
 	}
 	this.markElementCorrect = markElementCorrect;
 	
+	function markElementIncorrect(){
+		this.addClass('transitioning incorrect');
+		window.setTimeout(function(){
+			basicElement.removeClass("incorrect");
+			}, 300);
+		window.setTimeout(function(){
+			basicElement.removeClass("transitioning");
+		}, 1000);
+	}
+	this.markElementIncorrect = markElementIncorrect;
+	
 	
 	
 	

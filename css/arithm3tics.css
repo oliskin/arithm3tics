@@ -27,9 +27,20 @@
 }
 
 .board-element.transitioning.correct{
-	transition: background-color .1s linear;
-	-webkit-transition: background-color .1s linear;
-	-o-transition: background-color .1s linear;
+	transition: background-color .1s ease-out;
+	-webkit-transition: background-color .1s ease-out;
+	-o-transition: background-color .1s ease-out;
+	
+}
+
+.board-element.incorrect{
+	background-color: ddd;
+}
+
+.board-element.transitioning.incorrect{
+	transition: background-color .1s ease-out;
+	-webkit-transition: background-color .1s ease-out;
+	-o-transition: background-color .1s ease-out;
 	
 }
 
