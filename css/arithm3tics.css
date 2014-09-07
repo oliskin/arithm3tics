@@ -19,11 +19,11 @@
 }
 
 .board-element.selected{
-	background-color: #9d9;
+	background-color: #eda;
 }
 
 .board-element.correct{
-	background-color: eda;
+	background-color: #9d9;
 }
 
 .board-element.transitioning.correct{
@@ -34,7 +34,7 @@
 }
 
 .board-element.incorrect{
-	background-color: ddd;
+	background-color: #ddd;
 }
 
 .board-element.transitioning.incorrect{
@@ -93,7 +93,7 @@
 	width: 100px;
 	height: 100px;
 	
-	margin-top: 75px;
+	margin-top: 25px;
 	
 	text-align: center;
 	font-size: 64px;
