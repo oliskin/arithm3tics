@@ -10,8 +10,10 @@ BoardElement = function(row, col){
 	this.row = row;
 	this.col = col;
 
+
 	function setValue(value){
 		innerElement.text(value);
+		this.value = value;
 	}
 	this.setValue = setValue;
 	

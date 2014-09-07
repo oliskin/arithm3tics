@@ -1,10 +1,13 @@
 $(document).ready(function(){
 
 	selectedElements = new Array();
+	mathOperations = new Array();
+	mathOperations = [add, subtract, multiply, divide];
 
 	createBoard();
 	
 	var wantedNumbers = createWantedNumbers();
+	var wantedNumber;
 	
 	$('#new-round-button').click(newRound);
 });
@@ -99,7 +102,8 @@ function showNewWantedNumber(){
 	if(wantedNumbers.length > 0){
 		var selectedNumber = Math.floor(Math.random()*wantedNumbers.length);
 		
-		$("#wanted-number").text(wantedNumbers[selectedNumber]);
+		this.wantedNumber = wantedNumbers[selectedNumber];
+		$("#wanted-number").text(this.wantedNumber);
 		wantedNumbers.splice(selectedNumber,1);
 		
 		window.setTimeout(function(){
@@ -137,12 +141,20 @@ function elementClicked(event){
 		element.markElementUnselected();
 	}
 	
-	// //if now the list contains three elements, start evaluations
-// 	if(selectedElements.length == 3){
-// 		checkAdjacencyOfElements(selectedElements);
-// 		checkMathematicalCorrectness();
-// 	}
+	//if now the list contains three elements, start evaluations
+	if(selectedElements.length == 3){
+		evaluateResult(selectedElements, wantedNumber);
 
+	}
+
+}
+
+function evaluateResult(selectedElements, wantedNumber){
+	// checkAdjacencyOfElements(selectedElements);
+ 		isCorrect = checkMathematicalCorrectness(selectedElements, wantedNumber);
+ 		if(isCorrect){
+ 			console.log("correct");
+ 		}
 }
 
 // function checkAdjacencyOfElements(elements){
@@ -150,9 +162,25 @@ function elementClicked(event){
 // 	
 // }
 // 
-// function checkMathematicalCorrectness(){
-// 
-// }
+function checkMathematicalCorrectness(selectedElements, result){
+	if(result != null && selectedElements.length > 2){
+		//try first mathematical operation
+		for(i = 0; i< mathOperations.length; i++){
+			var partResult = mathOperations[i](selectedElements[0].value, selectedElements[1].value);
+			
+			//try second mathematical operation
+			for(j=0; j<mathOperations.length; j++){
+				var calcResult = mathOperations[j](partResult, selectedElements[2].value);
+				if (calcResult == result){
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+	
+	
+}
 
 function find(element, array){
 	for(var i = 0; i<array.length; i++){
@@ -161,4 +189,20 @@ function find(element, array){
 		}
 	}
 	return -1;
+}
+
+function add(element, otherElement){
+	return element + otherElement;
+}
+
+function subtract(element, otherElement){
+	return element - otherElement;
+}
+
+function multiply(element, otherElement){
+	return element * otherElement;
+}
+
+function divide(element, otherElement){
+	return element / otherElement;
 }
