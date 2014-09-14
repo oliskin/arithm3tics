@@ -1,19 +1,24 @@
-Board = function(){
+Board = function(size, maximumElementValue){
+
+	this.size = size; //Number of rows and cols
+	this.maximumElementValue = maximumElementValue;
+	this.rows = this.size;
+	this.cols = this.size;
 
 	var elements = new Array();
 	this.selectedElements = new Array();
 	
-	boardNumbers = createRandomBoardNumbers();
+	var boardNumbers = createBoardNumbers(this.rows * this.cols, this.maximumElementValue);
 	
-	for(i=0;i<8; i++){
+	for(i=0;i<this.rows; i++){
 		var the_tr = $('<tr>');
-		for(j=0;j<8;j++){
+		for(j=0;j<this.cols;j++){
 			var value;
 			
 			if(boardNumbers.length > 0){
-				value = boardNumbers[i*8+j];
+				value = removeRandomElementFromArray(boardNumbers);
 			} else {
-				value = Math.floor(Math.random()*10);
+				value = Math.floor(Math.random()*(this.maximumElementValue+1));
 			}
 			
 			var element = createElement(i,j,value);
@@ -83,28 +88,27 @@ Board = function(){
 		return -1;
 	}
 
-
-	function createRandomBoardNumbers(){
-		boardNumbers = new Array();
-		for(var i = 1; i<=8; i++){
-			for(var j = 1; j<= 8; j++){
+	
+	function createBoardNumbers(amount, maxValue){
+		var boardNumbers = new Array();
+		
+		var approximateItemCount = Math.round(amount/maxValue);
+		
+		for(var i = 1; i<=maxValue; i++){
+			for(var j = 1; j<= approximateItemCount; j++){
 				boardNumbers.push(i);
 			}
 		}
-		return shuffleArray(boardNumbers);
+		return boardNumbers;
 	}
-
-	function shuffleArray(array){
-		resultArray = new Array();
 	
-		while(array.length > 0){
-			var pickThisNumber = Math.floor(Math.random() * array.length);
-			resultArray.push(array[pickThisNumber]);
+	function removeRandomElementFromArray(array){
+		var selectedIndex = Math.floor(Math.random()*array.length);
 		
-			array.splice(pickThisNumber,1);
-		}
-		return resultArray;
-
+		var selectedValue = array[selectedIndex];
+		array.splice(selectedIndex,1);
+		
+		return selectedValue;
 	}
 
 }

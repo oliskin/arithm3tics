@@ -3,7 +3,7 @@ $(document).ready(function(){
 	mathOperations = new Array();
 	mathOperations = [add, subtract, multiply, divide];
 
-	board = new Board();
+	board = new Board(8,9);
 	
 	var wantedNumbers = createWantedNumbers();
 	wantedNumber = -1;
