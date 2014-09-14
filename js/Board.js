@@ -8,7 +8,20 @@ Board = function(size, maximumElementValue){
 	var elements = new Array();
 	this.selectedElements = new Array();
 	
-	var boardNumbers = createBoardNumbers(this.rows * this.cols, this.maximumElementValue);
+	this.createBoardNumbers = function(amount, maxValue){
+		var boardNumbers = new Array();
+		
+		var approximateItemCount = Math.round(amount/maxValue);
+		
+		for(var i = 1; i<=maxValue; i++){
+			for(var j = 1; j<= approximateItemCount; j++){
+				boardNumbers.push(i);
+			}
+		}
+		return boardNumbers;
+	};
+	
+	var boardNumbers = this.createBoardNumbers(this.rows * this.cols, this.maximumElementValue);
 	
 	for(i=0;i<this.rows; i++){
 		var the_tr = $('<tr>');
@@ -89,18 +102,7 @@ Board = function(size, maximumElementValue){
 	}
 
 	
-	function createBoardNumbers(amount, maxValue){
-		var boardNumbers = new Array();
-		
-		var approximateItemCount = Math.round(amount/maxValue);
-		
-		for(var i = 1; i<=maxValue; i++){
-			for(var j = 1; j<= approximateItemCount; j++){
-				boardNumbers.push(i);
-			}
-		}
-		return boardNumbers;
-	}
+	
 	
 	function removeRandomElementFromArray(array){
 		var selectedIndex = Math.floor(Math.random()*array.length);
