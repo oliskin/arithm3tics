@@ -45,8 +45,8 @@ function showNewWantedNumber(){
 	if(wantedNumbers.length > 0){
 		var selectedIndex = Math.floor(Math.random()*wantedNumbers.length);
 		
-		this.wantedNumber = wantedNumbers[selectedIndex];
-		$("#wanted-number").text(this.wantedNumber);
+		wantedNumber = wantedNumbers[selectedIndex];
+		$("#wanted-number").text(wantedNumber);
 		wantedNumbers.splice(selectedIndex,1);
 		
 		window.setTimeout(function(){
