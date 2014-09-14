@@ -1,10 +1,9 @@
 $(document).ready(function(){
 
-	selectedElements = new Array();
 	mathOperations = new Array();
 	mathOperations = [add, subtract, multiply, divide];
 
-	createBoard();
+	board = new Board();
 	
 	var wantedNumbers = createWantedNumbers();
 	wantedNumber = -1;
@@ -12,62 +11,6 @@ $(document).ready(function(){
 	$('#new-round-button').click(newRound);
 });
 
-
-function createBoard(){
-	boardNumbers = createRandomBoardNumbers();
-	
-	for(i=0;i<8; i++){
-		var the_tr = $('<tr>');
-		for(j=0;j<8;j++){
-			var value;
-			
-			if(boardNumbers.length > 0){
-				value = boardNumbers[i*8+j];
-			} else {
-				value = Math.floor(Math.random()*10);
-			}
-			
-			var element = createElement(i,j,value);
-			
-			var the_td = $('<td>').append(element);
-			the_tr.append(the_td);
-		}
-		$("#board-table").append(the_tr);
-	}
-}
-
-function createElement(row, col, value){
-	var element = new BoardElement(i,j);
-	element.setValue(value);
-	
-	
- 	element.click({clickedElement: element }, elementClicked);
-	
-	return element;
-}
-
-function createRandomBoardNumbers(){
-	boardNumbers = new Array();
-	for(var i = 1; i<=8; i++){
-		for(var j = 1; j<= 8; j++){
-			boardNumbers.push(i);
-		}
-	}
-	return shuffleArray(boardNumbers);
-}
-
-function shuffleArray(array){
-	resultArray = new Array();
-	
-	while(array.length > 0){
-		var pickThisNumber = Math.floor(Math.random() * array.length);
-		resultArray.push(array[pickThisNumber]);
-		
-		array.splice(pickThisNumber,1);
-	}
-	return resultArray;
-
-}
 
 function createWantedNumbers(){
 	wantedNumbers = new Array();
@@ -77,7 +20,7 @@ function createWantedNumbers(){
 	return wantedNumbers;
 }
 
-function newRound(arg1){
+function newRound(){
 
 	$('#next-number-button').off();
 	$('#next-number-button').click(showNewWantedNumber);
@@ -97,14 +40,14 @@ function newRound(arg1){
 function showNewWantedNumber(){
 	$('#time-panel').addClass('fade in');
 	
-	unselectAllElements();
+	board.unselectAllElements();
 	
 	if(wantedNumbers.length > 0){
-		var selectedNumber = Math.floor(Math.random()*wantedNumbers.length);
+		var selectedIndex = Math.floor(Math.random()*wantedNumbers.length);
 		
-		this.wantedNumber = wantedNumbers[selectedNumber];
+		this.wantedNumber = wantedNumbers[selectedIndex];
 		$("#wanted-number").text(this.wantedNumber);
-		wantedNumbers.splice(selectedNumber,1);
+		wantedNumbers.splice(selectedIndex,1);
 		
 		window.setTimeout(function(){
 			$('#time-panel').removeClass('in');
@@ -118,29 +61,13 @@ function showNewWantedNumber(){
 	}
 }
 
-function unselectAllElements(){
-	while(selectedElements.length > 0){
-		selectedElements[0].markElementUnselected();
-		selectedElements.splice(0,1);
-	}
-}
 
-
-function elementClicked(event){
+function globalElementClicked(event){
  	if(wantedNumber > -1){
 		var element = event.data.clickedElement;
-	
-		//adding or removing element to the selectedElements list
-		//if the element is inside the list, remove it
-		var elementIndex = find(element, selectedElements);
-	
-		if(elementIndex < 0){
-			selectedElements.push(element);
-			element.markElementSelected();
-		} else {
-			selectedElements.splice(elementIndex, 1);
-			element.markElementUnselected();
-		}
+		board.elementClicked(element);
+		
+		var selectedElements = board.getSelectedElements();
 	
 		//if now the list contains three elements, start evaluations
 		if(selectedElements.length == 3){
@@ -165,7 +92,7 @@ function evaluateResult(selectedElements, wantedNumber){
  			$.each(selectedElements, function(index, value) {
   				value.markElementIncorrect();
 			});
- 			unselectAllElements();
+ 			board.unselectAllElements();
  		}
 }
 
@@ -206,14 +133,6 @@ function checkMathematicalCorrectness(selectedElements, result){
 	
 }
 
-function find(element, array){
-	for(var i = 0; i<array.length; i++){
-		if(array[i] == element){
-			return i;
-		}
-	}
-	return -1;
-}
 
 function add(element, otherElement){
 	return element + otherElement;
