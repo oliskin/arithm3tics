@@ -1,5 +1,6 @@
-Board = function(size, maximumElementValue){
+Board = function(size, maximumElementValue, game){
 
+	this.game = game;
 	this.size = size; //Number of rows and cols
 	this.maximumElementValue = maximumElementValue;
 	this.rows = this.size;
@@ -82,8 +83,9 @@ Board = function(size, maximumElementValue){
 		var element = new BoardElement(i,j);
 		element.setValue(value);
 	
-	
-		element.click({clickedElement: element }, globalElementClicked);
+		element.click(function(){
+			game.elementClicked(element);
+		});
 		
 		elements.push(element);
 	
