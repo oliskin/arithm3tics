@@ -9,7 +9,22 @@ $(document).ready(function(){
 	wantedNumber = -1;
 	
 	$('#new-round-button').click(newRound);
+	
+	$('#easy-level-button').click({difficulty: "easy"}, newGame);
+	$('#medium-level-button').click({difficulty: "medium"}, newGame);
+	$('#hard-level-button').click({difficulty: "hard"}, newGame);
+	
 });
+
+function newGame(event){
+	var difficulty = event.data.difficulty;
+	
+	$('#welcome-container').removeClass("show");
+	$('#welcome-container').addClass("hidden");
+	$('#game-container').removeClass("hidden");
+	$('#game-container').addClass("show");
+
+}
 
 
 function createWantedNumbers(){
