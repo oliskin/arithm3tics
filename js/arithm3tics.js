@@ -1,10 +1,7 @@
 $(document).ready(function(){
 
 	mathOperations = new Array();
-	mathOperations = [add, subtract, multiply, divide];
-
-	game = new Game("hard");
-	
+	mathOperations = [add, subtract, multiply, divide];	
 	
 	
 	$('#easy-level-button').click({difficulty: "easy"}, newGame);
@@ -15,6 +12,8 @@ $(document).ready(function(){
 
 function newGame(event){
 	var difficulty = event.data.difficulty;
+	
+	new Game(difficulty);
 	
 	$('#welcome-container').removeClass("show");
 	$('#welcome-container').addClass("hidden");

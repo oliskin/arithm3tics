@@ -1,6 +1,5 @@
 Board = function(size, maximumElementValue, game){
 
-	this.game = game;
 	this.size = size; //Number of rows and cols
 	this.maximumElementValue = maximumElementValue;
 	this.rows = this.size;
@@ -24,6 +23,7 @@ Board = function(size, maximumElementValue, game){
 	
 	var boardNumbers = this.createBoardNumbers(this.rows * this.cols, this.maximumElementValue);
 	
+	$("#board-table").empty();
 	for(i=0;i<this.rows; i++){
 		var the_tr = $('<tr>');
 		for(j=0;j<this.cols;j++){

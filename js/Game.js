@@ -1,14 +1,12 @@
 Game = function(difficulty){
 
-	var wantedNumbers = createWantedNumbers();
+	var wantedNumbers;
 	var wantedNumber = -1;
+	var self = this;
 	
 	$('#new-round-button').click(newRound);
 
-	if(difficulty == "hard"){
-	
-		board = new Board(8,9, this);
-	}
+	init(difficulty);
 
 	
 	
@@ -34,9 +32,29 @@ Game = function(difficulty){
 	
 
 //private functions
-	function createWantedNumbers(){
+
+	function init(difficulty){
+		if(difficulty == "easy"){
+			wantedNumbers = createWantedNumbers(20);
+			board = new Board(6,8, self);
+		} 
+		else if(difficulty == "medium"){
+			wantedNumbers = createWantedNumbers(40);
+			board = new Board(7,8, self);
+		} 
+		else {
+			wantedNumbers = createWantedNumbers(50);
+			board = new Board(8,9, self);
+		}
+	}
+	
+	function createWantedNumbers(maximum){
+		if(maximum == null) {
+			maximum = 50;
+		}
+		
 		wantedNumbers = new Array();
-		for(var i = 0; i<50; i++){
+		for(var i = 0; i<maximum; i++){
 			wantedNumbers.push(i+1);
 		}
 		return wantedNumbers;
@@ -46,7 +64,8 @@ Game = function(difficulty){
 
 		$('#next-number-button').off();
 		$('#next-number-button').click(showNewWantedNumber);
-		wantedNumbers = createWantedNumbers();
+		
+		init(difficulty);
 		showNewWantedNumber();
 	
 		//start the timer
