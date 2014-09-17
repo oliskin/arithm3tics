@@ -22,13 +22,19 @@
 
 
 <div id="welcome-container" class="container show">
-	<div class="jumbotron">
+	
+	<div class="row">
+		<div class="col-xs-8 col-xs-offset-2">
+		<h1> Arithm3tics </h1>
+		</div>
+	</div>
+	
 	<div class="row">
 		
-		<div class="col-xs-6 col-xs-offset-3">
+		<div class="col-xs-8 col-xs-offset-2">
 			<div class="panel" >
 				<div class="panel-body">
-	
+					
 					<button id="instructions-button" class="btn btn-lg btn-primary btn-block">Instructions</button>
 	
 					<button id="easy-level-button" class="btn btn-lg btn-primary btn-block">Easy</button>
@@ -39,7 +45,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	
 	</div>
 </div>
 
@@ -55,7 +61,21 @@
 			Combine three adjacent elements from the board to make up the result. You can use the four basic arithmetic operations. 
 			
 			Watch out! The order of the operations is defining. Multiplication and Division are not prior to Addition and Subtraction.
-			<button type="button" class="btn-lg btn-primary" id="new-round-button">Start New Round</button>
+			
+			<button type="button" class="btn-lg btn-primary" id="new-round-button">
+				<span class="glyphicon glyphicon-repeat"></span>
+			</button>
+			
+			<button type="button" class="btn-lg btn-primary" id="next-number-button">
+				<span class="glyphicon glyphicon-forward"></span>
+			</button>
+			
+			<button type="button" class="btn-lg btn-primary" id="next-number-button">
+				<span class="glyphicon glyphicon-question-sign"></span>
+			</button>
+			
+			
+			
 			<div id="time-panel">
 			Your Time:
 			<div id="t" class="time-field">00:00</div>
@@ -64,7 +84,7 @@
 			<div id="wanted-number" >
 			</div>
 			
-			<button type="button" class="btn-lg btn-primary" id="next-number-button">Next Number</button>
+			
 		</div>
 	</div>
 </div>
