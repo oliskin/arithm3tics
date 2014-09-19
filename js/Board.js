@@ -32,7 +32,7 @@ Board = function(size, maximumElementValue, game){
 			if(boardNumbers.length > 0){
 				value = removeRandomElementFromArray(boardNumbers);
 			} else {
-				value = Math.floor(Math.random()*(this.maximumElementValue+1));
+				value = Math.floor((Math.random()*this.maximumElementValue)+1);
 			}
 			
 			var element = createElement(i,j,value);
