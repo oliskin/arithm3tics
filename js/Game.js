@@ -6,6 +6,8 @@ Game = function(difficulty){
 	
 	$('#new-round-button').click(newRound);
 
+	
+
 	init(difficulty);
 
 	
@@ -62,6 +64,10 @@ Game = function(difficulty){
 
 	function newRound(){
 
+		$('#new-round-button').empty();
+		$('#new-round-button').append('<span>');
+		$('#new-round-button span').addClass("glyphicon glyphicon-repeat");
+
 		$('#next-number-button').off();
 		$('#next-number-button').click(showNewWantedNumber);
 		
@@ -97,7 +103,7 @@ Game = function(difficulty){
 		
 		
 		} else {
-			$("#wanted-number").text("fin");
+			$("#wanted-number").text("Excellent!");
 			$("#t").timer('pause');
 		}
 	}

@@ -1,8 +1,6 @@
 
 
-.jumbotron {
-	height: 100%;
-}
+
 
 #welcome-container {
 	margin-top: 40px;
@@ -16,6 +14,10 @@
 
 #welcome-container .btn {
 	font-size: 2.5em;
+}
+
+#game-container {
+
 }
 
 #board {
@@ -81,12 +83,10 @@
 	margin-left: 40px;
 }
 
-#new-round-button{
-	margin-top: 40px;
-}
+
 
 #time-panel {
-	margin-top: 5px;
+	margin: 5px 0;
 
 	border: 3px solid #f97;
 	color: #f97;
@@ -109,17 +109,28 @@
 	font-size: 36px;
 }
 
+#button-panel{
+	
+}
+
 #wanted-number {
 	width: 100px;
 	height: 100px;
 	
-	margin-top: 25px;
+	margin: 15px 35px 0;
 	
 	text-align: center;
 	font-size: 64px;
 	/*color: #9dc;*/
 	
 	color: #f97;
+}
+
+#instructions-panel {
+	border: 3px solid #9dc;
+	border-radius: 5px;
+
+	
 }
 
 /* --------- Overriding some Bootstrap styles --------------- */

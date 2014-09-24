@@ -4,6 +4,7 @@
 <!-- JQuery -->
 <script language="javascript" type="text/javascript" src="js/jquery-2.1.1.min.js"> </script>
 
+
 <!-- Bootstrap -->
 <script language="javascript" type="text/javascript" src="js/bootstrap.min.js"> </script>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" >
@@ -57,32 +58,50 @@
 		</div>
 	
 		<div id="task-area" style="float: left;">
-			<h1> Arithm3tics </h1>
-			Combine three adjacent elements from the board to make up the result. You can use the four basic arithmetic operations. 
+			<div id="game-console">
+				<h1> Arithm3tics </h1>
 			
-			Watch out! The order of the operations is defining. Multiplication and Division are not prior to Addition and Subtraction.
-			
-			<button type="button" class="btn-lg btn-primary" id="new-round-button">
-				<span class="glyphicon glyphicon-repeat"></span>
-			</button>
-			
-			<button type="button" class="btn-lg btn-primary" id="next-number-button">
-				<span class="glyphicon glyphicon-forward"></span>
-			</button>
-			
-			<button type="button" class="btn-lg btn-primary" id="next-number-button">
-				<span class="glyphicon glyphicon-question-sign"></span>
-			</button>
+				<div id="time-panel">
+				Your Time:
+				<div id="t" class="time-field">00:00</div>
+				</div>
 			
 			
+				<div id="button-panel">
+					<button type="button" class="btn-lg btn-primary" id="new-round-button" title="Start a New Round">
+						<span class="glyphicon"">Go!</span>
+					</button>
 			
-			<div id="time-panel">
-			Your Time:
-			<div id="t" class="time-field">00:00</div>
+					<button type="button" class="btn-lg btn-primary" id="next-number-button" title="Skip This Number">
+						<span class="glyphicon glyphicon-forward"></span>
+					</button>
+			
+					<button type="button" class="btn-lg btn-primary" id="instr-button" title="Instructions">
+						<span class="glyphicon glyphicon-question-sign"></span>
+					</button>
+				</div>
+			
+			
+				<div id="wanted-number" ></div>
 			</div>
 			
-			<div id="wanted-number" >
+			
+			<div id="instructions-panel" class="panel fade">
+  				<button id="close-instructions-button" type="button" class="close">
+  					<span aria-hidden="true">&times;</span>
+  					<span class="sr-only">Close</span>
+  				</button>
+  				<div class="panel-body">
+  				Combine three adjacent elements from the board to make up the result. You can use the four basic arithmetic operations. 
+			
+				Watch out! The order of the operations is defining. Multiplication and Division are not prior to Addition and Subtraction.
+				</div>
 			</div>
+			
+			
+			
+			
+			
 			
 			
 		</div>

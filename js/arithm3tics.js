@@ -8,7 +8,19 @@ $(document).ready(function(){
 	$('#medium-level-button').click({difficulty: "medium"}, newGame);
 	$('#hard-level-button').click({difficulty: "hard"}, newGame);
 	
+	$('#instr-button').click(toggleInstructions);
+	$('#close-instructions-button').click(hideInstructions);
+	
 });
+
+function toggleInstructions(){
+		$('#instructions-panel').toggleClass('in');
+	}
+	
+function hideInstructions(){
+		$('#instructions-panel').removeClass('in');
+	}
+
 
 function newGame(event){
 	var difficulty = event.data.difficulty;
